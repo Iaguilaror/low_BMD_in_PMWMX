@@ -141,9 +141,13 @@ etiquetas_y <- ( marcas_y / 100 ) %>% percent( )
 
 screeplot <- fviz_eig( pca_resultados,
                        barfill = "gray50", barcolor = "black",) +
+  labs( title = paste0("Overview of Principal Component Analysis \n",
+                       condicion2, " vs ", condicion1),
+        subtitle = "Scree Plot" ) +
   scale_y_continuous( breaks = marcas_y,
                       labels = etiquetas_y ) +
-  theme_classic( base_size = 15 )
+  theme_classic( base_size = 15 ) +
+  theme( plot.title = element_text( face = "bold" ) )
 
 # Vis
 screeplot
@@ -181,9 +185,13 @@ pca_ind <- fviz_pca_ind( pca_resultados,
                          geom = "point", pointsize = 3,
                          col.ind = as.factor( trans2_pca[, ultima_col] ) ,
                          invisible = "quali" ) +
+  labs( title = "Principal Component Analysis",
+        subtitle = paste0( condicion2, " vs ", condicion1) ) +
   scale_color_d3() +
   theme_bw( base_size = 15 ) +
-  theme( legend.title = element_blank() )
+  theme( legend.title = element_blank( ),
+         plot.title = element_text( hjust = 0.5 ),
+         plot.subtitle = element_text( hjust = 0.5 ) )
 
 # vis
 pca_ind
@@ -308,7 +316,7 @@ heat1 <- pheatmap( mat = heat_escalado,
                    annotation_colors = mis_colores,
                    annotation_row = etiquetas_prote2,
                    annotation_col = etiquetas_col
-                   )
+)
 
 # guardar el heatmap
 ggsave( filename = ofile_heat,
