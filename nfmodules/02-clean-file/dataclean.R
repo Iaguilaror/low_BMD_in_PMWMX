@@ -56,8 +56,8 @@ muestras <- read.csv( file = sample_sheet )
 # Sacamos los nombres de las condiciones...
 condiciones <- basename( path = ifile ) %>%
   str_remove( string = ., pattern = ".*/") %>%
-  str_remove( string = ., pattern = "\\.xlsx") %>% 
-  str_split( string = ., pattern = "_" ) %>% 
+  str_remove( string = ., pattern = "\\.xlsx") %>%
+  str_split( string = ., pattern = "_" ) %>%
   unlist( )
 
 condicion1 <- condiciones[1]
@@ -140,7 +140,7 @@ condicion2_final <- data_condicion_2 %>%
 # juntamos toda la info calculada ====
 # preparamos las columnas base de la data original
 base_data <- cuantificadas %>%
-  rename( Anova..p. = "Anova.(p)" ) %>% 
+  rename( Anova..p. = "Anova.(p)" ) %>%
   select( Accession,
           Peptide.count,
           Unique.peptides,
