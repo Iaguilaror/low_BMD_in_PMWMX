@@ -139,7 +139,8 @@ maxy <- 100
 marcas_y <- seq( from = 0, to = maxy, by = 10 )
 etiquetas_y <- ( marcas_y / 100 ) %>% percent( )
 
-screeplot <- fviz_eig( pca_resultados ) +
+screeplot <- fviz_eig( pca_resultados,
+                       barfill = "gray50", barcolor = "black",) +
   scale_y_continuous( breaks = marcas_y,
                       labels = etiquetas_y ) +
   theme_classic( base_size = 15 )
@@ -221,7 +222,10 @@ pcp <- ggplot( data = pc_largo,
   geom_line( mapping = aes( group = muestra ), size = 0.5 ) +
   geom_point( shape = 21, size = 2, color = "black" ) +
   scale_x_continuous( breaks = min( pc_largo$PC):max( pc_largo$PC) ) +
-  labs( title = "Parallel Coordinate Plot" ) +
+  scale_color_d3() +
+  scale_fill_d3() +
+  labs( title = "Parallel Coordinate Plot",
+        x = "Dim" ) +
   theme_light( base_size = 15 ) +
   theme( panel.grid.minor.y = element_blank( ),
          legend.position = "top",
@@ -231,7 +235,7 @@ pcp <- ggplot( data = pc_largo,
 pcp
 
 # creamos un plot de diagnostico ====
-diagnostic_plot <- plot_grid( screeplot, pcp, pca_ind_text, bip )
+diagnostic_plot <- plot_grid( screeplot, pcp, pca_ind_text, bip, labels = c( "A", "B", "C", "D" ) )
 
 # guardar el plot diagnostico
 ggsave( filename = ofile_pca1,
