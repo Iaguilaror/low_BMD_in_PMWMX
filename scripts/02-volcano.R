@@ -54,7 +54,7 @@ unique_peptide_threshold <- 1
 count_threshold <- 2
 
 # for VOLCANO tag names for top N peptides ====
-n_best <- 10    # number of peptides top UP and DOWN to name in the plot
+n_best <- 5    # number of peptides top UP and DOWN to name in the plot
 
 # Get the name of both conditions
 conditions <- basename( path = ifile ) %>%
