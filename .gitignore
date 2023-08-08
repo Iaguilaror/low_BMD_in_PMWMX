@@ -1,5 +1,5 @@
 # ignore nf logs
-*.nextflow.log
+*.nextflow.log*
 
 # ignore workdirs
 *work
@@ -12,3 +12,6 @@ modules/*/test/results/
 
 # ignore .Rhistory
 *.Rhistory
+
+# paper res, because they can be replicated
+paper-results/
