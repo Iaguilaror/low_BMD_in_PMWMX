@@ -8,7 +8,7 @@
 *.nextflow/
 
 # ignore test results
-nfmodules/*/test/results/
+modules/*/test/results/
 
 # ignore .Rhistory
 *.Rhistory

@@ -164,7 +164,9 @@ pca_ind.p <- fviz_pca_ind( pca_results,
                            axes = c( 1, 2 ),
                            geom = "point", pointsize = 3,
                            col.ind = as.factor( trans_pca_2[, ultimate_col] ),
-                           invisible = "quali" ) +
+                           ellipse.alpha = 0,
+                           invisible = "quali",
+                           addEllipses = TRUE ) +
   labs( title = "Principal Component Analysis",
         subtitle = paste0( cond_2, " vs ", cond_1) ) +
   scale_color_d3() +
@@ -206,7 +208,7 @@ pcp.p <- ggplot( data = pc_long,
                                 fill = condition) ) +
   geom_line( mapping = aes( group = muestra ), size = 0.5 ) +
   geom_point( shape = 21, size = 2, color = "black" ) +
-  scale_x_continuous( breaks = min( pc_long$PC):max( pc_long$PC) ) +
+  scale_x_continuous( breaks = min( pc_long$PC):max( pc_long$PC ) ) +
   scale_color_d3() +
   scale_fill_d3() +
   labs( title = "Parallel Coordinate Plot",
