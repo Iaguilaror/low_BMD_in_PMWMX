@@ -141,6 +141,8 @@ muestra	condition
 
 ### Pipeline Results
 
+Inside the directory paper-results/ you can find the following:
+
 * A `.volcano.png figure` with the figure showing a volcano plot.  
 
 * A `.volcano.named.png image` same as above but highlighting top UP and DOWN peptides.  

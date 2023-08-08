@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 /* Define the main processes */
 process cleanfile {
 
-	publishDir "${params.intermediates_dir}/clean-file/", mode:"copyNoFollow"
+	publishDir "${params.results_dir}/01-clean-file/", mode:"copyNoFollow"
 
     input:
         path MATERIALS
