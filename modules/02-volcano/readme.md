@@ -1,4 +1,4 @@
-# clean-file
+# volcano
 **Author(s):**
 
 * Israel Aguilar-Ordoñez (iaguilaror@gmail.com)
