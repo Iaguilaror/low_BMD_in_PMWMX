@@ -3,6 +3,7 @@ library("dplyr")
 library("stringr")
 library("ggplot2")
 library("cowplot")
+library("ggsci")
 library("ggrepel")
 library("openxlsx")
 
@@ -10,7 +11,7 @@ library("openxlsx")
 args = commandArgs( trailingOnly = TRUE )
 
 ## Uncomment For debugging only
-# args[1] <- "test/data/OP_Vs_Normal.cleandata.xlsx" ## "test/data/OP_Vs_Normal.cleandata.xlsx"
+# args[1] <- "test/data/OP_vs_Normal.cleandata.xlsx" ## "test/data/OP_Vs_Normal.cleandata.xlsx"
 
 # put a name to args
 ifile <- args[1]
@@ -38,7 +39,7 @@ pvalue_threshold <- 0.05
 # FoldChange threshold to highlit peptides (UP or DOWN)
 # limit ratio > log2(X) for UP
 # limit ratio < log2(X) for DOWN
-ratio_threshold <- 2 %>%               # un fold change de dos significa un cambio de el doble de expresion
+ratio_threshold <- 1.5 %>%               # un fold change de dos significa un cambio de el doble de expresion
   log2()
 
 # limit for CV > X
@@ -137,25 +138,35 @@ volcano1 <- ggplot( data = data_all,
   geom_vline( xintercept = vertical_lines.v,
               linetype="dashed") +
   geom_point( data = peptides_up,
-              color = "#2D728F",
+              color = "#336600",
               alpha = 0.7,
               size = 3 ) +
   geom_point( data = peptides_down,
-              color = "#AB3428",
+              color = "#CC3333",
               alpha = 0.7,
               size = 3 ) +
   scale_x_continuous( limits = x_limits,
                       breaks = x_breaks$marks,
                       labels = x_breaks$etiquetas ) +
-  labs(title = " Differential Peptidome",
-       subtitle = subtitle,
-       x = x_title ,
-       y = "-log10( ANOVA p-value )" ) +
+  labs(
+    #title = " Differential Peptidome",
+    subtitle = subtitle,
+    x = x_title ,
+    y = "-log10( corrected p-value )" ) +
   coord_flip( ) +
-  theme_half_open( font_size = 15 ) +
-  theme( plot.background = element_rect( fill = "white" ),
-         plot.title = element_text( hjust = 0.5 ),
-         plot.subtitle = element_text( hjust = 0.5 ) )
+  # theme_half_open( font_size = 14.5 ) +
+  theme_linedraw( base_size = 14.5 ) +
+  theme(panel.grid.major = element_blank( ),
+        panel.grid.minor = element_blank( ),
+        plot.subtitle = element_text( hjust = 0.5 , size = 13,
+                                      face="bold" ),
+        axis.title.y=element_text( size = 13 ),
+        axis.title.x=element_text( size = 13 ),
+        axis.text.x= element_text( size = 12 ),
+        axis.text.y= element_text( size = 12 ) )
+  # theme( plot.background = element_rect( fill = "white" ),
+  #        plot.title = element_text( hjust = 0.5 ),
+  #        plot.subtitle = element_text( hjust = 0.5 ) )
 
 # guardamos el plot
 ggsave( filename = ofile,
@@ -177,11 +188,11 @@ top_down <- peptides_down %>%
 # add labels to plot
 volcano2 <- volcano1 +
   geom_label_repel( data = top_up,
-                    mapping = aes( label = str_remove( string = Accession,
+                    mapping = aes( label = str_remove( string = ProteinID,
                                                        pattern = ";.*$"  ) ),
                     max.overlaps = 50 ) +
   geom_label_repel( data = top_down,
-                    mapping = aes( label = str_remove( string = Accession,
+                    mapping = aes( label = str_remove( string = ProteinID,
                                                        pattern = ";.*$"  ) ),
                     max.overlaps = 50 )
 
@@ -197,7 +208,7 @@ ggsave( filename = ofile2,
 idfixer <- function( the_data ) {
   
   # fix the accession
-  the_data$singleID <- str_remove_all( string = the_data$Accession,
+  the_data$singleID <- str_remove_all( string = the_data$ProteinID,
                                        pattern = ";.*$" )
   
   # last col

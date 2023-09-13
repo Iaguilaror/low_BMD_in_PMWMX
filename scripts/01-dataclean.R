@@ -117,7 +117,7 @@ data_cond_2 <- quantified %>%
 # Calculate values of interest for condition 1
 final_cond_2 <- data_cond_2 %>%
   mutate( average.cond2 = rowMeans( . ) ) %>%
-  mutate( log10.cond2 = log10( average.cond2) ) %>%
+  mutate( log10.cond2 = log10( average.cond2 ) ) %>%
   mutate( sd.cond2 = as.matrix( data_cond_2 ) %>% rowSds( ) ) %>%
   mutate( CV.cond2 = sd.cond2 / average.cond2 ) %>%
   mutate( Count.cond2 = rowSums( data_cond_2 > 0 ) )
@@ -127,6 +127,7 @@ final_cond_2 <- data_cond_2 %>%
 base_data <- quantified %>%
   rename( Anova..p. = "Anova.(p)" ) %>%
   select( Accession,
+          ProteinID,
           Peptide.count,
           Unique.peptides,
           Anova..p.,
