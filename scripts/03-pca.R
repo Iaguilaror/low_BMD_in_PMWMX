@@ -13,7 +13,7 @@ args = commandArgs( trailingOnly = TRUE )
 
 ## Uncomment For debugging only
 ## Comment for production mode only
-# args[1] <- "test/data/OP_Vs_Normal.cleandata.UP_and_DOWN_hits.xlsx" ## "test/data/OP_Vs_Normal.cleandata.UP_and_DOWN_hits.xlsx"
+# args[1] <- "test/data/OP_vs_Normal.cleandata.UP_and_DOWN_hits.xlsx" ## "test/data/OP_Vs_Normal.cleandata.UP_and_DOWN_hits.xlsx"
 # args[2] <- "../../real-data/sample_sheet.csv" ## "test/data/sample_sheet.csv"
 
 # put a name to args
