@@ -176,8 +176,8 @@ If you have questions, requests, or bugs to report, open an issue in github, or 
 
 #### Dev Team
 Israel Aguilar-Ordonez <iaguilaror@gmail.com>   
-Adriana Becerra Cervera <abecerra@inmegen.edu.mx>
-Diana Ivette Aparicio Bautista <daparicio@inmegen.gob.mx>
+Adriana Becerra Cervera <abecerra@inmegen.edu.mx>   
+Diana Ivette Aparicio Bautista <daparicio@inmegen.gob.mx>   
 Rafael Velazquez Cruz <rvelazquez@inmegen.gob.mx>
 
 ### Cite us
