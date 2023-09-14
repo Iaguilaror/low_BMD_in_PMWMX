@@ -14,10 +14,18 @@ Version: 0.0.1
 Authors:
 - Bioinformatics Design
  Israel Aguilar-Ordonez (iaguilaror@gmail.com)
+ Adriana Becerra Cervera (abecerra@inmegen.edu.mx)
+ Diana Ivette Aparicio Bautista (daparicio@inmegen.gob.mx)
+ Rafael Velazquez Cruz (rvelazquez@inmegen.gob.mx)
+
 - Bioinformatics Development
  Israel Aguilar-Ordonez (iaguilaror@gmail.com)
+ Adriana Becerra Cervera (abecerra@inmegen.edu.mx)
+ Diana Ivette Aparicio Bautista (daparicio@inmegen.gob.mx)
+
 - Nextflow Port
  Israel Aguilar-Ordonez (iaguilaror@gmail.com)
+
 =============================
 Pipeline Processes In Brief:
 
@@ -49,7 +57,7 @@ nextflow.enable.dsl = 2
   Define pipeline version
   If you bump the number, remember to bump it in the header description at the begining of this script too
 */
-params.ver = "0.0.1"
+params.ver = "0.0.2"
 
 /*//////////////////////////////
   Define pipeline Name
