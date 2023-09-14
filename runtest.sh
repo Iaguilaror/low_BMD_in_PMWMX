@@ -7,8 +7,9 @@ echo -e "======\n Testing NF execution \n======" \
 && nextflow run main.nf \
     --input_dir $input_dir \
     --sample_sheet $samplesheet \
+	--intermediate_file1 real-data/pre-made-intermediate-files/Total_protein_PLSDA-PCA.xlsx \
 	-resume \
 	-with-report $output_directory/`date +%Y%m%d_%H%M%S`_report.html \
 	-with-dag $output_directory/`date +%Y%m%d_%H%M%S`.DAG.html \
-&& mv proteomics-comparer-intermediate  proteomics-comparer-results $output_directory/ \
+&& mv proteomics-comparer-results $output_directory/ \
 && echo -e "======\n Basic pipeline TEST SUCCESSFUL \n======"

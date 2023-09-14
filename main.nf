@@ -31,6 +31,7 @@ _003_UPandDOWN_PCA
 Pos-processing
 
 Anlysis
+_A_multicondition_analysis_1
 
 ENDING
 
@@ -71,6 +72,7 @@ params.version  = false   //default is false to not trigger version message auto
 
 params.input_dir     =	false	//if no inputh path is provided, value is false to provoke the error during the parameter validation block
 params.sample_sheet  =	false	//if no inputh path is provided, value is false to provoke the error during the parameter validation block
+params.intermediate_file1  =	false	//if no inputh path is provided, value is false to provoke the error during the parameter validation block
 
 /* read the module with the param init and check */
 include { } from './modules/doc_and_param_check.nf'
@@ -112,12 +114,14 @@ params.intermediates_dir =  "${params.output_dir}/${params.pipeline_name}-interm
 include { CLEANFILE }    from  './modules/01-clean-file'
 include { VOLCANO }      from  './modules/02-volcano'
 include { PCA }          from  './modules/03-UPandDOWN-PCA'
+include { AANALYSIS1 }   from  './modules/A-multi-condition-analysis-1'
 
 /* load scripts to send to workdirs */
 /* declare scripts channel from modules */
-scripts_clean_file  = Channel.fromPath( "scripts/01-dataclean.R" )
-scripts_volcano     = Channel.fromPath( "scripts/02-volcano.R" )
-scripts_pca         = Channel.fromPath( "scripts/03-pca.R" )
+scripts_clean_file   = Channel.fromPath( "scripts/01-dataclean.R" )
+scripts_volcano      = Channel.fromPath( "scripts/02-volcano.R" )
+scripts_pca          = Channel.fromPath( "scripts/03-pca.R" )
+scripts_A_analysis_1 = Channel.fromPath( "scripts/A-1-multicondition-analysis.R" )
 
 workflow mainflow {
 
@@ -128,6 +132,8 @@ workflow mainflow {
     all_updown = VOLCANO ( all_cleaned, scripts_volcano )
 
     PCA ( all_updown, scripts_pca )
+
+    AANALYSIS1 ( all_updown, scripts_A_analysis_1 )
 
 }
 

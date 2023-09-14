@@ -13,8 +13,8 @@ args = commandArgs( trailingOnly = TRUE )
 
 ## Uncomment For debugging only
 ## Comment for production mode only
-# args[1] <- "test/data/OP_vs_Normal.cleandata.UP_and_DOWN_hits.xlsx" ## "test/data/OP_Vs_Normal.cleandata.UP_and_DOWN_hits.xlsx"
-# args[2] <- "../../real-data/sample_sheet.csv" ## "test/data/sample_sheet.csv"
+# args[1] <- "OP_vs_OS.cleandata.UP_and_DOWN_hits.xlsx" ## "test/data/OP_Vs_Normal.cleandata.UP_and_DOWN_hits.xlsx"
+# args[2] <- "sample_sheet.csv" ## "test/data/sample_sheet.csv"
 
 # put a name to args
 ifile <- args[1]
@@ -72,7 +72,7 @@ peptide_down <- read.xlsx( xlsxFile = ifile, sheet = 2 )
 base_pca <- bind_rows( peptide_up, peptide_down )
 
 # put Acc as rownames
-rownames( base_pca ) <- base_pca$singleID
+rownames( base_pca ) <- base_pca$Accession
 
 # find column positions for condition 1
 pos_cond_1 <- str_detect( string = colnames( base_pca ),
@@ -194,7 +194,7 @@ re_penultimate  <- re_ultimate_col - 1
 
 # get PC coord in long format
 pc_long <- all_pc_coord %>%
-  pivot_longer( cols = -c(re_penultimate:re_ultimate_col),
+  pivot_longer( cols = -all_of(re_penultimate:re_ultimate_col),
                 names_to = "PC",
                 values_to = "coordinate" ) %>% 
   mutate( PC = str_remove( string = PC, pattern = "Dim\\." ),
@@ -206,7 +206,7 @@ pcp.p <- ggplot( data = pc_long,
                                 y = coordinate,
                                 color = condition,
                                 fill = condition) ) +
-  geom_line( mapping = aes( group = muestra ), size = 0.5 ) +
+  geom_line( mapping = aes( group = muestra ), linewidth = 0.5 ) +
   geom_point( shape = 21, size = 2, color = "black" ) +
   scale_x_continuous( breaks = min( pc_long$PC):max( pc_long$PC ) ) +
   scale_color_d3() +
