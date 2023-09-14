@@ -10,14 +10,20 @@ NF pipeline for running comparative proteomic analyses
 
 - This pipeline is meant to reproduce the results in: TO-DO-add url and doi after paper is published
 
-The pipeline takes as INPUT an excel samplesheet created by UGPM, LaNSE, Cinvestav-IPN from a Synapt G2-Si Mass Spectrometer. Contact Emmanuel Castro-Rios (eriosc@cinvestav.mx) for more info. It also takes a .csv samplesheet describing sampleID_replicate and the condition (i.e. control vs treatment). 
+The pipeline takes as INPUT an excel samplesheet created by UGPM, LaNSE, Cinvestav-IPN from a Synapt G2-Si Mass Spectrometer. Contact Emmanuel Castro-Rios (eriosc@cinvestav.mx) for more info. It also takes a .csv samplesheet describing sampleID_replicate and the condition (i.e. control vs treatment). It also takes a pre-built "Total_protein_PLSDA-PCA.xlsx" wide-format table with all of the samples (rows) and all of the proteins (columns) quantifiedM; this last one is used to reproduce figures on the paper. 
 
 'Proteomic compare' is a pipeline tool that takes peptide quantifications in excel format and process it to generate a volcano plot and PCA of comparisons between conditions. This pipeline generates the followin outputs:  
 For each INPUT .xlsx
-1) a figurte of a volcano plot with UP and DOWN peptides;  
+1) a figure of a volcano plot with UP and DOWN peptides;  
 2) a figure same as 1) but with labeled peptides;  
 3) a figure of a PCA plot created from the UP and DOWN peptides;
 4) a figure of a panel diagnostics for 3), including a screeplot, a Parallel Coordinate Plot, a Biplot, and a labeled PCA with sample names.  
+
+For the pre-built Total_protein_PLSDA-PCA.xlsx
+5) a figure showing the intersection for detected proteins in each condition;  
+6) a figure showing the intersection for DOWN-expressed proteins in each condition; 
+7) a figure showing the intersection for UP-expressed proteins in each condition;
+8) a figure showing 3D rendering of the PLS coordinates for the 3 first components, using all of the sampels for all of the conditions.
 
 ---
 
@@ -27,7 +33,11 @@ For each INPUT .xlsx
 * Supports .xlsx files from  UGPM, LaNSE, Cinvestav-IPN from a Synapt G2-Si Mass Spectrometer
 * Results include labelled and unlabelled volcano plot
 * Results include PCA and a diagnostics screeplot, PCP, and biplot
-* Scalability and reproducibility via a Nextflow-based framework
+* Scalability and reproducibility via a Nextflow-based framework   
+
+  **-v 0.0.2**
+
+* Support a "Total_protein_PLSDA-PCA.xlsx" pre-built to create plots for comparing multiple conditions
 
 ### TO-DO(s)  
 * Easy deploy with docker
@@ -66,6 +76,10 @@ openxlsx version: 4.2.5.2
 scales version: 1.2.1
 stringr version: 1.5.0
 tidyr version: 1.3.0
+ggvenn version: 0.1.10
+ropls version: 1.32.0
+scatterplot3d version: 0.3-44 
+purrr version: 1.0.1
 ```
 
 ---
@@ -137,6 +151,22 @@ muestra	condition
 20220608_44_HDMSE_OP_PI_R003	OP
 ...
 ```
+
+* A ` "Total_protein_PLSDA-PCA.xlsx", excel file` that includes all of the detected proteins in the evaluated conditions, in table format.  
+
+Example contents  
+```
+sample_id       condicion       P04217  P01023  Q8WWZ7  Q09428
+20220608_34_HDMSE_N_P1_R001     N       36353.52363     50338.57254     0       0
+20220608_34_HDMSE_N_P1_R002     N       41329.12922     52938.46197     17.76093614     0
+20220608_34_HDMSE_N_P1_R003     N       38530.74795     49830.05592     0       1.475326865
+20220608_36_HDMSE_N_P3_R001     N       27093.23423     45550.87057     109.1547172     4.376165809
+20220608_36_HDMSE_N_P3_R002     N       26938.02884     44113.33152     42.30108357     16.80307341
+20220608_36_HDMSE_N_P3_R003     N       25023.78261     45638.40939     75.33983583     12.10888364
+20220608_37_HDMSE_N_P4_R001     N       45232.14913     57859.06924     57.86140548     1246.738609	
+...
+```
+
 ---
 
 ### Pipeline Results
@@ -152,6 +182,14 @@ Inside the directory paper-results/ you can find the following:
 * A `.PCA_main.png figure` with the figure showing a PCA for two conditions.  
 
 * A `PCA_diagnostic.png image` same as above but showing a panel with: screeplot, labeled PCA, a Parallel Coordinate Plot, and a biplot. Meant to provide an overview of the whole PCA.  
+
+* A `VENN_shared.png figure` with the figure showing the intersection for detected proteins in each condition.  
+
+* A `VENN_shared_DEP_DOWN.png figure` with the figure showing the intersection for DOWN-expressed proteins in each condition.  
+
+* A `VENN_shared_DEP_UP.png figure` with the figure showing the intersection for UP-expressed proteins in each condition.  
+
+* A `PLS-DA.png figure` with the figure showing 3D rendering of the PLS coordinates for the 3 first components, using all of the sampels for all of the conditions.  
 
 ---
 
