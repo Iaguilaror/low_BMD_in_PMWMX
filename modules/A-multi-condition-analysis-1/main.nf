@@ -23,11 +23,12 @@ process aanalysis1 {
 workflow AANALYSIS1 {
 
   take:
-  all_protein_for_plsda
   all_updown
   scripts_A_analysis_1
 
   main:
+
+  all_protein_for_plsda = Channel.fromPath( "${params.intermediate_file1}" )
 
   all_updown
   .toList()
