@@ -11,7 +11,7 @@ library("openxlsx")
 args = commandArgs( trailingOnly = TRUE )
 
 ## Uncomment For debugging only
-# args[1] <- "test/data/OP_vs_Normal.cleandata.xlsx" ## "test/data/OP_Vs_Normal.cleandata.xlsx"
+# args[1] <- "test/data/OS_vs_Normal.cleandata.xlsx" ## "test/data/OP_Vs_Normal.cleandata.xlsx"
 
 # put a name to args
 ifile <- args[1]
@@ -77,13 +77,15 @@ data_all <- read.xlsx( xlsxFile = ifile,
 # Create Volcano plot ====
 # filter for all our thresholds
 base_volcano <- data_all %>%
-  filter( Anova..p. < pvalue_threshold,
-          Peptide.count >= peptide_count_threshold,
-          Unique.peptides >= unique_peptide_threshold,
-          Count.cond1 >= count_threshold,
-          Count.cond2 >= count_threshold,
-          CV.cond1 > cv_threshold,
-          CV.cond2 > cv_threshold )
+  filter( 
+    Anova..p. < pvalue_threshold,
+    fdr_p < pvalue_threshold,
+    Peptide.count >= peptide_count_threshold,
+    Unique.peptides >= unique_peptide_threshold,
+    Count.cond1 >= count_threshold,
+    Count.cond2 >= count_threshold,
+    CV.cond1 > cv_threshold,
+    CV.cond2 > cv_threshold )
 
 # define values for plotting
 # Prepare lines for log2 FoldChange
@@ -129,7 +131,9 @@ x_title <- paste( "log2.Ratio(",
 # create base volcano
 volcano1 <- ggplot( data = data_all,
                     mapping = aes( x = log2.Ratio,
-                                   y = nlog10.Anova ) ) +
+                                   # y = nlog10.Anova
+                                   y = nlog10.fdr_p
+                                   ) ) +
   geom_point( alpha = 0.3,                                      
               shape = 1,                                        
               color = "#2E294E" ) +
@@ -164,9 +168,9 @@ volcano1 <- ggplot( data = data_all,
         axis.title.x=element_text( size = 13 ),
         axis.text.x= element_text( size = 12 ),
         axis.text.y= element_text( size = 12 ) )
-  # theme( plot.background = element_rect( fill = "white" ),
-  #        plot.title = element_text( hjust = 0.5 ),
-  #        plot.subtitle = element_text( hjust = 0.5 ) )
+# theme( plot.background = element_rect( fill = "white" ),
+#        plot.title = element_text( hjust = 0.5 ),
+#        plot.subtitle = element_text( hjust = 0.5 ) )
 
 # guardamos el plot
 ggsave( filename = ofile,

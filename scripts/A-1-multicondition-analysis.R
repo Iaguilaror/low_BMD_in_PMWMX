@@ -149,7 +149,7 @@ all_down  <- all_files %>%
 shared_venn.f <- function( the_data, the_title ) {
   
   data_tmp <- the_data %>% 
-    select( ProteinID, condition, DEG_state ) %>% 
+    select( Accession, condition, DEG_state ) %>% 
     mutate( DEG_state = TRUE ) %>% 
     unique( ) %>% 
     pivot_wider( id_cols = 1,

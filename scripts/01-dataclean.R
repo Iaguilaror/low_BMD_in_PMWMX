@@ -9,7 +9,7 @@ args = commandArgs( trailingOnly = TRUE )
 
 ## Uncomment For debugging only
 ## Comment for production mode only
-# args[1] <- "test/data/OP_Vs_Normal.xlsx" ## "test/data/OP_Vs_Normal.xlsxf"
+# args[1] <- "test/data/OS_vs_Normal.xlsx" ## "test/data/OS_Vs_Normal.xlsxf"
 # args[2] <- "test/data/sample_sheet.csv" ## "test/data/sample_sheet.csv"
 
 # put a name to args
@@ -131,6 +131,7 @@ base_data <- quantified %>%
           Peptide.count,
           Unique.peptides,
           Anova..p.,
+          fdr_p,
           Max.fold.change,
           Description )
 
@@ -167,6 +168,7 @@ removed_by_missing <- bound_data %>%
 # Last calculations ====
 final_data <- filtered_data %>%
   mutate( nlog10.Anova = -log10( Anova..p. ) ) %>%
+  mutate( nlog10.fdr_p = -log10( fdr_p ) ) %>%
   mutate( ratio = average.cond2 / average.cond1 ) %>%
   mutate( log2.Ratio = log2( ratio )  )
 
