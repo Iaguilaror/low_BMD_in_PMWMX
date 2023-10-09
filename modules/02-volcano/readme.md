@@ -74,7 +74,21 @@ bash testmodule.sh
 ## module directory structure
 
 ````
-TO-DO
+.
+├── main.nf                                 # Nextflow main script
+├── readme.md                               # this readme
+├── scripts -> ../../scripts/               # dir with all the scripts for the pipeline
+├── test                                    # dir with test materials
+│   └── data -> ../../../real-data/         # symlink to input data
+│   └── results                            
+│       └── 02-volcano  
+│           └── OP_vs_Normal.cleandata.volcano.named.png       # the volcano figure including text label for the top genes
+│           └── OP_vs_Normal.cleandata.volcano.png             # the volcano figure without text label in genes
+│           └── OP_vs_Normal.cleandata.UP_and_DOWN_hits.xlsx   # excel file for the UP and DOWN DEG genes
+├── testmodule.nf                           # Nextflow test script to call the main.nf after simulating channel interactions
+└── testmodule.sh                           # bash script to test the whole module
 ````
 ## References
-* TO-DO: add references to cowplot, tidyverse and openxlsx
+* Wilke, C., et al. "Hesselberth J. wilkelab/cowplot: 1.1. 1." (2021).  
+* Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” Journal of Open Source Software, 4(43), 1686. doi:10.21105/joss.01686.  
+* Schauberger P, Walker A (2022). openxlsx: Read, Write and Edit xlsx Files. https://ycphs.github.io/openxlsx/index.html, https://github.com/ycphs/openxlsx.
