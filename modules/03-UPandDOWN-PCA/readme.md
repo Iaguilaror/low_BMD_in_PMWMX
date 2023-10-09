@@ -87,7 +87,7 @@ bash testmodule.sh
 ├── readme.md                               # this readme
 ├── scripts -> ../../scripts/               # dir with all the scripts for the pipeline
 ├── test                                    # dir with test materials
-│   └── data -> ../../../real-data/         # symlink to input data
+│   └── data -> ../../02-volcano/test/results/02-volcano         # symlink to input data
 │   └── results                            
 │       └── 03-pca/
 │           ├── OP_vs_Normal.cleandata.UP_and_DOWN_hits.PCA_diagnostic.png    # A panel plot with screeplot, Parallel Coordinate Plot, text=labeled PC1 vs PC2, and biplot for PC1 vs PC2  
