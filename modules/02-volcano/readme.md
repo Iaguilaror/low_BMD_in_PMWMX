@@ -79,7 +79,7 @@ bash testmodule.sh
 ├── readme.md                               # this readme
 ├── scripts -> ../../scripts/               # dir with all the scripts for the pipeline
 ├── test                                    # dir with test materials
-│   └── data -> ../../../real-data/         # symlink to input data
+│   └── data -> ../../01-clean-file/test/results/01-clean-file  # symlink to input data
 │   └── results                            
 │       └── 02-volcano  
 │           └── OP_vs_Normal.cleandata.volcano.named.png       # the volcano figure including text label for the top genes
