@@ -10,7 +10,7 @@ echo -e "======\n Testing NF execution \n======" \
     --input_dir $input_dir \
     --sample_sheet $samplesheet \
     --intermediate_file1 real-data/pre-made-intermediate-files/Total_protein_PLSDA-PCA.xlsx \
-    -with-docker r-base \
+    -with-docker iaguilaror/lowbmd \
     -resume \
     -with-report $output_directory/`date +%Y%m%d_%H%M%S`_report.html \
     -with-dag $output_directory/`date +%Y%m%d_%H%M%S`.DAG.html \
