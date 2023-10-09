@@ -39,10 +39,6 @@ For the pre-built Total_protein_PLSDA-PCA.xlsx
 
 * Support a "Total_protein_PLSDA-PCA.xlsx" pre-built to create plots for comparing multiple conditions
 
-### TO-DO(s)  
-* Easy deploy with docker
-* Make docker outputs not root owned
-
 ---
 
 ## Requirements
@@ -114,16 +110,35 @@ git@github.com:Iaguilaror/low_BMD_in_PMWMX.git
 ```
 ---
 
-## Testing the pipeline with Docker:
+## Replicate our analysis with Docker:
 
-* Estimated test time:  **X minute(s)**  
+#### Command line Software required:
+| Requirement | Version  | Required Commands * |
+|:---------:|:--------:|:-------------------:|
+| [Nextflow](https://www.nextflow.io/docs/latest/getstarted.html) | 22.10.4 | nextflow |
 
-TO-DO
+\* These commands must be accessible from your `$PATH` (*i.e.* you should be able to invoke them from your command line).  
+
+* Estimated test time:  **5 minute(s)**  
+
+1. To test pipeline execution using test data, run:  
+```
+bash docker-replicate-analysis.sh
+```
+
+2. Your console should print the Nextflow log for the run, once every process has been submitted, the following message will appear:  
+```
+======
+ Basic pipeline TEST SUCCESSFUL
+======
+```
+
+3. Pipeline results for test data should be in the following directory:  
+```
+./paper-results/
+```
 
 ---
-
-### Usage
-TO-DO
 
 ### Pipeline Inputs
 
@@ -193,10 +208,6 @@ Inside the directory paper-results/ you can find the following:
 
 ---
 
-### Docker usage
-
-TO-DO
-
 ---
 #### References
 Under the hood Proteomic compare uses some coding tools, please include the following ciations in your work:
@@ -205,7 +216,11 @@ Under the hood Proteomic compare uses some coding tools, please include the foll
 
 * Team, R. C. (2017). R: a language and environment for statistical computing. R Foundation for Statistical Computing, Vienna. http s. www. R-proje ct. org.
 
-TO-DO: explore citations and ackowledgments for used R packages.
+* Thevenot EA, Roux A, Xu Y, Ezan E, Junot C (2015). “Analysis of the human adult urinary metabolome variations with age, body mass index and gender by implementing a comprehensive workflow for univariate and OPLS statistical analyses.” Journal of Proteome Research, 14, 3322-3335.
+  
+* Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” Journal of Open Source Software, 4(43), 1686. doi:10.21105/joss.01686.
+
+* Ligges U, Mächler M (2003). “Scatterplot3d - an R Package for Visualizing Multivariate Data.” Journal of Statistical Software, 8(11), 1–20. doi:10.18637/jss.v008.i11.
 
 ---
 
