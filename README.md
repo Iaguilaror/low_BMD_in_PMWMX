@@ -209,14 +209,25 @@ Inside the directory paper-results/ you can find the following:
 
 ---
 
-## module directory structure
+### module directory structure
 
 ````
-TO-DO
+.
+├── dev_notes/                                # includes development notes like the png for the workflow
+├── docker_material/                          # docker file and readme to build, tag and push the dockerimage
+├── docker-replicate-analysis.sh              # bash script to launch the pipeline test with docker
+├── main.nf                                   # the Nextflow main script
+├── modules/                                  # sub-dirs for development of the Nextflow modules
+├── paper-results/                            # here will be the figures and tables after runing the *replicate-analysis script
+├── README.md                                 # This readme
+├── real-data/                                # directory with the real xlsx and samplesheet files
+├── replicate-analysis.sh -> runtest.sh       # a symlink to runtest.sh
+├── runtest.sh                                # bash script to launch the pipeline test locally
+└── scripts/                                  # directory with all the scripts used by the pipeline
 ````
 
 ---
-#### References
+### References
 Under the hood Proteomic compare uses some coding tools, please include the following ciations in your work:
 
 * Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., & Notredame, C. (2017). Nextflow enables reproducible computational workflows. Nature Biotechnology, 35(4), 316–319. doi:10.1038/nbt.3820
@@ -234,7 +245,7 @@ Under the hood Proteomic compare uses some coding tools, please include the foll
 ### Contact
 If you have questions, requests, or bugs to report, open an issue in github, or email <iaguilaror@gmail.com>
 
-#### Dev Team
+### Dev Team
 Israel Aguilar-Ordonez <iaguilaror@gmail.com>   
 Adriana Becerra Cervera <abecerra@inmegen.edu.mx>   
 Diana Ivette Aparicio Bautista <daparicio@inmegen.gob.mx>   
