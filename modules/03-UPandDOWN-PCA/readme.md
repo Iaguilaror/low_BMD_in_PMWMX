@@ -82,7 +82,21 @@ bash testmodule.sh
 ## module directory structure
 
 ````
-TO-DO
+.
+├── main.nf                                 # Nextflow main script
+├── readme.md                               # this readme
+├── scripts -> ../../scripts/               # dir with all the scripts for the pipeline
+├── test                                    # dir with test materials
+│   └── data -> ../../../real-data/         # symlink to input data
+│   └── results                            
+│       └── 03-pca/
+│           ├── OP_vs_Normal.cleandata.UP_and_DOWN_hits.PCA_diagnostic.png    # A panel plot with screeplot, Parallel Coordinate Plot, text=labeled PC1 vs PC2, and biplot for PC1 vs PC2  
+│           ├── OP_vs_Normal.cleandata.UP_and_DOWN_hits.PCA_main.png          # A figure for PC1 vs PC2  
+│           └── ...
+├── testmodule.nf                           # Nextflow test script to call the main.nf after simulating channel interactions
+└── testmodule.sh                           # bash script to test the whole module
 ````
 ## References
-* TO-DO: add a link to UGPM services that produce this kind of data
+* Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” Journal of Open Source Software, 4(43), 1686. doi:10.21105/joss.01686.   
+* Kassambara, A. and Mundt, F. (2020) Factoextra: Extract and Visualize the Results of Multivariate Data Analyses. R Package Version 1.0.7.
+https://CRAN.R-project.org/package=factoextra   
