@@ -209,6 +209,12 @@ Inside the directory paper-results/ you can find the following:
 
 ---
 
+## module directory structure
+
+````
+TO-DO
+````
+
 ---
 #### References
 Under the hood Proteomic compare uses some coding tools, please include the following ciations in your work:
