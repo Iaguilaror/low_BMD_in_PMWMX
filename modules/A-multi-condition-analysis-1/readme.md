@@ -97,7 +97,24 @@ bash testmodule.sh
 ## module directory structure
 
 ````
-TO-DO
+.
+├── main.nf                                 # Nextflow main script
+├── readme.md                               # this readme
+├── scripts -> ../../scripts/               # dir with all the scripts for the pipeline
+├── test                                    # dir with test materials
+│   └── data
+│   │   ├── OP_vs_Normal.cleandata.UP_and_DOWN_hits.xlsx                  # symlink to excel file with DEG genes
+│   │   ├── ...
+│   │   ├── sample_sheet.csv -> ../../../../real-data/sample_sheet.csv    # symlink to samplesheet to tag data
+│   │   └── Total_protein_PLSDA-PCA.xlsx -> ...                           # symlink to a file build by abecerra@inmegen.edu.mx
+│   └── results                            
+│       └── A-multi-condition-analysis-1
+│           └── PLS-DA.png                                                # 3D PLSDA plot
+│           └── VENN_shared_DEP_DOWN.png                                  # Venn diagram for DEG DOWN genes
+│           └── VENN_shared_DEP_UP.png                                    # Venn diagram for DEG UP genes
+│           └── VENN_shared.png                                           # Venn diagram for all the proteins in dataset
+├── testmodule.nf                           # Nextflow test script to call the main.nf after simulating channel interactions
+└── testmodule.sh                           # bash script to test the whole module
 ````
 ## References
-* TO-DO: add a link to UGPM services that produce this kind of data
+* Thevenot EA, Roux A, Xu Y, Ezan E, Junot C (2015). “Analysis of the human adult urinary metabolome variations with age, body mass index and gender by implementing a comprehensive workflow for univariate and OPLS statistical analyses.” Journal of Proteome Research, 14, 3322-3335. https://doi.org/10.1021/acs.jproteome.5b00354.  
