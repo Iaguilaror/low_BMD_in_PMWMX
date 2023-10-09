@@ -35,9 +35,10 @@ For the pre-built Total_protein_PLSDA-PCA.xlsx
 * Results include PCA and a diagnostics screeplot, PCP, and biplot
 * Scalability and reproducibility via a Nextflow-based framework   
 
-  **-v 0.0.2**
+  **-v 0.0.2.1**
 
 * Support a "Total_protein_PLSDA-PCA.xlsx" pre-built to create plots for comparing multiple conditions
+* Paper fully reproducible with Docker
 
 ---
 
