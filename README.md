@@ -84,7 +84,7 @@ purrr version: 1.0.1
 ### Installation
 Download pipeline from Github repository:  
 ```
-git@github.com:Iaguilaror/low_BMD_in_PMWMX.git
+git clone git@github.com:Iaguilaror/low_BMD_in_PMWMX.git
 ```
 
 ---
